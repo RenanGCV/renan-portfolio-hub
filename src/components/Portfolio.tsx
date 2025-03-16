@@ -1,3 +1,4 @@
+
 import { ExternalLink, Github, Download, Youtube } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
@@ -25,6 +26,16 @@ const projects = [
   },
   {
     id: 3,
+    title: 'Joalheria Luxury',
+    description: 'Landing page para uma joalheria desenvolvida com Vite, React e TypeScript',
+    image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1374&auto=format&fit=crop',
+    tech: ['React', 'TypeScript', 'Vite', 'CSS'],
+    demo: 'https://landing-page-joalheiria-luxury.netlify.app/',
+    repo: '',
+    isGame: false
+  },
+  {
+    id: 4,
     title: 'Plataforma E-commerce',
     description: 'Uma plataforma e-commerce full-stack com integração de pagamento',
     image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=764&auto=format&fit=crop',
@@ -34,7 +45,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 4,
+    id: 5,
     title: 'App de Gerenciamento de Tarefas',
     description: 'Uma aplicação intuitiva de gerenciamento de tarefas com funcionalidade de arrastar e soltar',
     image: 'https://images.unsplash.com/photo-1564865878688-9a244444042a?q=80&w=1170&auto=format&fit=crop',
@@ -44,7 +55,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 5,
+    id: 6,
     title: 'Sistema de Recomendação de Filmes',
     description: 'Um aplicativo de recomendação de filmes que utiliza algoritmos de aprendizado de máquina',
     image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1159&auto=format&fit=crop',
@@ -54,7 +65,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 6,
+    id: 7,
     title: 'Painel de Clima',
     description: 'Um painel de clima responsivo que exibe dados meteorológicos em tempo real',
     image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1065&auto=format&fit=crop',
@@ -143,15 +154,17 @@ const Portfolio = () => {
                         <ExternalLink size={16} />
                         Demo ao Vivo
                       </a>
-                      <a
-                        href={project.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
-                      >
-                        <Github size={16} />
-                        Código Fonte
-                      </a>
+                      {project.repo && (
+                        <a
+                          href={project.repo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
+                        >
+                          <Github size={16} />
+                          Código Fonte
+                        </a>
+                      )}
                     </>
                   )}
                 </div>
