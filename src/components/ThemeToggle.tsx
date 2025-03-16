@@ -1,0 +1,54 @@
+
+import { useState, useEffect } from 'react';
+import { Moon, Sun } from 'lucide-react';
+import { Toggle } from '@/components/ui/toggle';
+
+const ThemeToggle = () => {
+  const [isDarkMode, setIsDarkMode] = useState(true);
+
+  useEffect(() => {
+    // Iniciar em modo escuro como padrão
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+        setIsDarkMode(true);
+      } else {
+        document.documentElement.classList.remove('dark');
+        setIsDarkMode(false);
+      }
+    }
+  }, []);
+
+  const toggleTheme = () => {
+    if (isDarkMode) {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+      setIsDarkMode(false);
+    } else {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+      setIsDarkMode(true);
+    }
+  };
+
+  return (
+    <Toggle 
+      pressed={isDarkMode} 
+      onPressedChange={toggleTheme}
+      className="rounded-full p-2 bg-secondary dark:bg-secondary/70"
+      aria-label="Alternar tema"
+    >
+      {isDarkMode ? (
+        <Sun className="h-4 w-4" />
+      ) : (
+        <Moon className="h-4 w-4" />
+      )}
+    </Toggle>
+  );
+};
+
+export default ThemeToggle;

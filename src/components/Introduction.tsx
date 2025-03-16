@@ -12,20 +12,20 @@ const Introduction = () => {
         <div className="md:col-span-7">
           <AnimatedSection>
             <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-              Full Stack Developer
+              Desenvolvedor Full Stack
             </div>
           </AnimatedSection>
           
           <AnimatedSection delay={200}>
             <h1 className="section-title mb-6">
-              Hello, I'm <span className="text-primary">Renan Gonçalves</span>
+              Olá, eu sou <span className="text-primary">Renan Gonçalves</span>
             </h1>
           </AnimatedSection>
           
           <AnimatedSection delay={400}>
             <p className="text-muted-foreground text-lg md:text-xl mb-8 max-w-3xl">
-              A 20-year-old full stack developer from Rio de Janeiro, Brazil. 
-              Passionate about creating seamless digital experiences through code and design.
+              Um desenvolvedor full stack de 20 anos do Rio de Janeiro, Brasil.
+              Apaixonado por criar experiências digitais perfeitas através de código e design.
             </p>
           </AnimatedSection>
           
@@ -35,13 +35,13 @@ const Introduction = () => {
                 href="#contact"
                 className="button-primary"
               >
-                Get in Touch
+                Entre em Contato
               </a>
               <a
                 href="#portfolio"
                 className="button-secondary"
               >
-                View My Work
+                Ver Meus Trabalhos
               </a>
             </div>
           </AnimatedSection>
@@ -89,9 +89,9 @@ const Introduction = () => {
                     <Book size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">Education</h3>
-                    <p className="text-muted-foreground mb-2">Technical degree in Digital Games (Firjan Senai)</p>
-                    <p className="text-muted-foreground">Studying System Analysis and Development (Veiga de Almeida)</p>
+                    <h3 className="font-display font-semibold text-lg mb-2">Educação</h3>
+                    <p className="text-muted-foreground mb-2">Formação técnica em Jogos Digitais (Firjan Senai)</p>
+                    <p className="text-muted-foreground">Cursando Análise e Desenvolvimento de Sistemas (Veiga de Almeida)</p>
                   </div>
                 </div>
               </div>
@@ -102,9 +102,9 @@ const Introduction = () => {
                     <Code size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">Tech Skills</h3>
+                    <h3 className="font-display font-semibold text-lg mb-2">Habilidades Técnicas</h3>
                     <p className="text-muted-foreground">
-                      Front-end and back-end development, database management, API integration, responsive design
+                      Desenvolvimento front-end e back-end, gerenciamento de banco de dados, integração de APIs, design responsivo
                     </p>
                   </div>
                 </div>
@@ -116,9 +116,9 @@ const Introduction = () => {
                     <Users size={24} />
                   </div>
                   <div>
-                    <h3 className="font-display font-semibold text-lg mb-2">Additional Expertise</h3>
+                    <h3 className="font-display font-semibold text-lg mb-2">Expertise Adicional</h3>
                     <p className="text-muted-foreground">
-                      Agile methodologies, Scrum, People & Project Management
+                      Metodologias ágeis, Scrum, Gestão de Pessoas & Projetos
                     </p>
                   </div>
                 </div>

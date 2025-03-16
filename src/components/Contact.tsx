@@ -8,32 +8,32 @@ const Contact = () => {
   };
 
   return (
-    <section id="contact" className="section-container bg-gray-50">
+    <section id="contact" className="section-container bg-gray-50 dark:bg-gray-900">
       <AnimatedSection>
         <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-          Get In Touch
+          Entre em Contato
         </div>
       </AnimatedSection>
       
       <AnimatedSection delay={200}>
-        <h2 className="section-title">Let's Work Together</h2>
+        <h2 className="section-title">Vamos Trabalhar Juntos</h2>
       </AnimatedSection>
       
       <AnimatedSection delay={400}>
         <p className="section-subtitle">
-          Have a project in mind? Let's discuss how I can help you bring your ideas to life.
+          Tem um projeto em mente? Vamos discutir como posso ajudar a transformar suas ideias em realidade.
         </p>
       </AnimatedSection>
       
       <div className="grid md:grid-cols-5 gap-8 mt-12">
         <AnimatedSection delay={600} className="md:col-span-3">
           <div className="glass-panel rounded-2xl p-8 h-full">
-            <h3 className="font-display text-2xl font-semibold mb-6">Contact Me</h3>
+            <h3 className="font-display text-2xl font-semibold mb-6">Fale Comigo</h3>
             
             <div className="mb-8">
               <p className="text-muted-foreground mb-4">
-                I'm currently available for freelance work and full-time positions. 
-                If you're interested in working together, please don't hesitate to reach out.
+                Estou atualmente disponível para trabalhos freelance e posições em tempo integral.
+                Se estiver interessado em trabalhar juntos, não hesite em entrar em contato.
               </p>
               
               <button
@@ -41,7 +41,7 @@ const Contact = () => {
                 className="button-primary flex items-center gap-2 mt-6"
               >
                 <MessageSquare size={18} />
-                Chat on WhatsApp
+                Conversar no WhatsApp
               </button>
               
               <p className="text-sm text-muted-foreground mt-4">
@@ -53,7 +53,7 @@ const Contact = () => {
         
         <AnimatedSection delay={800} className="md:col-span-2">
           <div className="glass-panel rounded-2xl p-8 h-full">
-            <h3 className="font-display text-2xl font-semibold mb-6">Connect</h3>
+            <h3 className="font-display text-2xl font-semibold mb-6">Conecte-se</h3>
             
             <div className="space-y-6">
               <a 

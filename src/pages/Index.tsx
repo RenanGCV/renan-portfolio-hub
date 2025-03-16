@@ -9,9 +9,22 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Renan Gonçalves - Full Stack Developer";
+    document.title = "Renan Gonçalves - Desenvolvedor Full Stack";
     
-    // Animation on scroll
+    // Iniciar em modo escuro como padrão se não houver preferência salva
+    if (!localStorage.getItem('theme')) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      const theme = localStorage.getItem('theme');
+      if (theme === 'dark') {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+    }
+    
+    // Animação no scroll
     const observer = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
