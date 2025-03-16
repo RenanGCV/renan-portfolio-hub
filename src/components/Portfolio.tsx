@@ -1,4 +1,3 @@
-
 import { ExternalLink, Github, Download, Youtube } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
@@ -51,7 +50,7 @@ const projects = [
     image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1470&auto=format&fit=crop',
     tech: ['HTML/CSS', 'JavaScript', 'React', 'Vue', 'TypeScript', 'Node.js'],
     demo: 'https://sites-landing-page.vercel.app/',
-    repo: '',
+    repo: 'https://github.com/RenanGCV/SitesLandingPage',
     isGame: false
   },
   {
