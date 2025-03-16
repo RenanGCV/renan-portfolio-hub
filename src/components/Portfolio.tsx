@@ -1,44 +1,58 @@
 
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Download, Youtube } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
 // Dados simulados para projetos - substituir com os projetos reais do Renan
 const projects = [
   {
     id: 1,
+    title: 'Labor Forum',
+    description: 'Um jogo criado utilizando Unity Engine, C# e Aseprite',
+    image: 'https://img.youtube.com/vi/OMxOmWdakNw/maxresdefault.jpg',
+    tech: ['Unity', 'C#', 'Aseprite', 'Game Development'],
+    demo: 'https://renangcv.itch.io/labor-forum',
+    repo: 'https://www.youtube.com/watch?v=OMxOmWdakNw',
+    isGame: true
+  },
+  {
+    id: 2,
     title: 'Plataforma E-commerce',
     description: 'Uma plataforma e-commerce full-stack com integração de pagamento',
     image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=764&auto=format&fit=crop',
     tech: ['React', 'Node.js', 'Express', 'MongoDB'],
     demo: 'https://github.com/RenanGCV',
-    repo: 'https://github.com/RenanGCV'
+    repo: 'https://github.com/RenanGCV',
+    isGame: false
   },
   {
-    id: 2,
+    id: 3,
     title: 'App de Gerenciamento de Tarefas',
     description: 'Uma aplicação intuitiva de gerenciamento de tarefas com funcionalidade de arrastar e soltar',
     image: 'https://images.unsplash.com/photo-1564865878688-9a244444042a?q=80&w=1170&auto=format&fit=crop',
     tech: ['React', 'Redux', 'Tailwind CSS'],
     demo: 'https://github.com/RenanGCV',
-    repo: 'https://github.com/RenanGCV'
+    repo: 'https://github.com/RenanGCV',
+    isGame: false
   },
   {
-    id: 3,
+    id: 4,
     title: 'Sistema de Recomendação de Filmes',
     description: 'Um aplicativo de recomendação de filmes que utiliza algoritmos de aprendizado de máquina',
     image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1159&auto=format&fit=crop',
     tech: ['Python', 'Flask', 'React', 'SQL'],
     demo: 'https://github.com/RenanGCV',
-    repo: 'https://github.com/RenanGCV'
+    repo: 'https://github.com/RenanGCV',
+    isGame: false
   },
   {
-    id: 4,
+    id: 5,
     title: 'Painel de Clima',
     description: 'Um painel de clima responsivo que exibe dados meteorológicos em tempo real',
     image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1065&auto=format&fit=crop',
     tech: ['JavaScript', 'HTML/CSS', 'Weather API'],
     demo: 'https://github.com/RenanGCV',
-    repo: 'https://github.com/RenanGCV'
+    repo: 'https://github.com/RenanGCV',
+    isGame: false
   }
 ];
 
@@ -88,24 +102,49 @@ const Portfolio = () => {
                 </div>
                 
                 <div className="flex gap-4 mt-4">
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-                  >
-                    <ExternalLink size={16} />
-                    Demo ao Vivo
-                  </a>
-                  <a
-                    href={project.repo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
-                  >
-                    <Github size={16} />
-                    Código Fonte
-                  </a>
+                  {project.isGame ? (
+                    <>
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                      >
+                        <Download size={16} />
+                        Download Jogo
+                      </a>
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
+                      >
+                        <Youtube size={16} />
+                        Ver Trailer
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <a
+                        href={project.demo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
+                      >
+                        <ExternalLink size={16} />
+                        Demo ao Vivo
+                      </a>
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
+                      >
+                        <Github size={16} />
+                        Código Fonte
+                      </a>
+                    </>
+                  )}
                 </div>
               </div>
             </div>
