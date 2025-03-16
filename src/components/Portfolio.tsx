@@ -46,6 +46,16 @@ const projects = [
   },
   {
     id: 5,
+    title: 'Landing Page Desenvolvimento Web',
+    description: 'Landing page para um desenvolvedor de sites com tecnologias modernas',
+    image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1470&auto=format&fit=crop',
+    tech: ['HTML/CSS', 'JavaScript', 'React', 'Vue', 'TypeScript', 'Node.js'],
+    demo: 'https://sites-landing-page.vercel.app/',
+    repo: '',
+    isGame: false
+  },
+  {
+    id: 6,
     title: 'Plataforma E-commerce',
     description: 'Uma plataforma e-commerce full-stack com integração de pagamento',
     image: 'https://images.unsplash.com/photo-1661956602116-aa6865609028?q=80&w=764&auto=format&fit=crop',
@@ -55,7 +65,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 6,
+    id: 7,
     title: 'App de Gerenciamento de Tarefas',
     description: 'Uma aplicação intuitiva de gerenciamento de tarefas com funcionalidade de arrastar e soltar',
     image: 'https://images.unsplash.com/photo-1564865878688-9a244444042a?q=80&w=1170&auto=format&fit=crop',
@@ -65,7 +75,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 7,
+    id: 8,
     title: 'Sistema de Recomendação de Filmes',
     description: 'Um aplicativo de recomendação de filmes que utiliza algoritmos de aprendizado de máquina',
     image: 'https://images.unsplash.com/photo-1485846234645-a62644f84728?q=80&w=1159&auto=format&fit=crop',
@@ -75,7 +85,7 @@ const projects = [
     isGame: false
   },
   {
-    id: 8,
+    id: 9,
     title: 'Painel de Clima',
     description: 'Um painel de clima responsivo que exibe dados meteorológicos em tempo real',
     image: 'https://images.unsplash.com/photo-1504608524841-42fe6f032b4b?q=80&w=1065&auto=format&fit=crop',
