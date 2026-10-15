@@ -1,6 +1,7 @@
 import React from 'react';
 import { Github, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
+import { profile } from '@/data/profile';
 import { contact, mailtoLink, social, whatsappLink } from '@/data/social';
 
 const socialIcons: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -70,7 +71,18 @@ const Contact = () => (
               {contact.availability}
             </p>
 
-            <h3 className="mt-6 font-display text-2xl font-semibold">O que esperar de mim</h3>
+            <div className="mt-6 flex items-center gap-4">
+              <img
+                src={profile.photoClose}
+                alt={profile.name}
+                loading="lazy"
+                decoding="async"
+                width={120}
+                height={120}
+                className="h-14 w-14 shrink-0 rounded-full object-cover object-top"
+              />
+              <h3 className="font-display text-2xl font-semibold">O que esperar de mim</h3>
+            </div>
             <ul className="mt-6 space-y-5">
               {[
                 {

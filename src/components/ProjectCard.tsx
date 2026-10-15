@@ -1,6 +1,7 @@
 import React from 'react';
 import { ArrowUpRight, Code2, Download, Play } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
+import Monogram from '@/components/Monogram';
 import type { Project, ProjectLink } from '@/data/projects';
 import { cn } from '@/lib/utils';
 
@@ -39,14 +40,30 @@ const ProjectMedia: React.FC<{ project: Project; className?: string }> = ({
     return (
       <div
         className={cn(
-          'court-lines flex items-center justify-center rounded border border-border bg-muted',
+          'court-lines deep-panel relative flex flex-col justify-between overflow-hidden p-6',
           className,
         )}
         aria-hidden="true"
       >
-        <span className="font-mono text-xs uppercase tracking-[0.18em] text-muted-foreground">
+        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-primary-bright">
           {project.category}
         </span>
+        <div>
+          <p className="font-display text-xl font-semibold leading-tight text-deep-foreground">
+            {project.title}
+          </p>
+          <p className="mt-2 flex flex-wrap gap-1.5">
+            {project.tech.slice(0, 3).map((item) => (
+              <span
+                key={item}
+                className="rounded border border-deep-foreground/20 px-2 py-0.5 font-mono text-[11px] text-deep-foreground/60"
+              >
+                {item}
+              </span>
+            ))}
+          </p>
+        </div>
+        <Monogram className="absolute -bottom-6 -right-6 h-32 w-32 opacity-10" decorative />
       </div>
     );
   }

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, Gamepad2, Layout, Server, Sparkles } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
+import { profile } from '@/data/profile';
 import { process, services, type Service } from '@/data/services';
 import { whatsappLink } from '@/data/social';
 
@@ -59,12 +60,16 @@ const Services = () => (
         </div>
       </AnimatedSection>
 
-      <AnimatedSection animation="fade-in-up" className="deep-panel mt-10 p-6 md:p-8">
-        <h3 className="font-display text-xl font-semibold">Como eu trabalho</h3>
-        <p className="mt-2 max-w-xl text-sm text-deep-foreground/70">
-          Processo curto, sem cerimônia, com algo funcionando desde as primeiras semanas.
-        </p>
-        <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <AnimatedSection
+        animation="fade-in-up"
+        className="deep-panel mt-10 overflow-hidden lg:grid lg:grid-cols-[1fr_320px]"
+      >
+        <div className="p-6 md:p-8">
+          <h3 className="font-display text-xl font-semibold">Como eu trabalho</h3>
+          <p className="mt-2 max-w-xl text-sm text-deep-foreground/70">
+            Processo curto, sem cerimônia, com algo funcionando desde as primeiras semanas.
+          </p>
+          <ol className="mt-8 grid gap-6 sm:grid-cols-2">
           {process.map((item, index) => (
             <li key={item.step} className="border-t border-deep-foreground/20 pt-4">
               <span className="font-mono text-[11px] text-primary-bright">
@@ -74,7 +79,18 @@ const Services = () => (
               <p className="mt-1 text-sm leading-relaxed text-deep-foreground/70">{item.detail}</p>
             </li>
           ))}
-        </ol>
+          </ol>
+        </div>
+
+        <img
+          src={profile.photoDesk}
+          alt={`${profile.shortName} trabalhando`}
+          loading="lazy"
+          decoding="async"
+          width={640}
+          height={800}
+          className="hidden h-full w-full object-cover lg:block"
+        />
       </AnimatedSection>
     </div>
   </section>

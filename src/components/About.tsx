@@ -13,8 +13,8 @@ const About = () => (
         <h2 className="section-title">Quem está do outro lado</h2>
       </AnimatedSection>
 
-      <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:gap-16">
-        <AnimatedSection animation="fade-in">
+      <div className="grid gap-12 lg:grid-cols-[minmax(0,380px)_1fr] lg:gap-16">
+        <AnimatedSection animation="fade-in" className="lg:sticky lg:top-24 lg:self-start">
           <div className="court-lines overflow-hidden rounded-lg border border-border bg-muted">
             {profile.photo ? (
               <img

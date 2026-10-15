@@ -7,9 +7,13 @@ export const profile = {
   headlineHighlight: 'que funcionam',
   summary:
     'Full stack, jogos digitais e soluções com IA. Interface, sistema e entrega no mesmo raciocínio.',
-  /** Foto opcional em public/renan/. Vazio = monograma como fallback. */
-  photo: '',
+  /** Fotos em public/renan/. Deixe vazio para cair no monograma. */
+  photo: '/renan/renan-retrato.webp',
   photoAlt: 'Renan Gonçalves',
+  /** Close-up, usado como avatar no contato. */
+  photoClose: '/renan/renan-close.webp',
+  /** Na mesa de trabalho, usado na seção de processo. */
+  photoDesk: '/renan/renan-mesa.webp',
 } as const;
 
 export const about = {
