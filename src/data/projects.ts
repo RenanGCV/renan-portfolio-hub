@@ -180,21 +180,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: 'financeiro',
-    title: 'Financeiro',
-    category: 'Produto',
-    context: 'Projeto próprio',
-    problem: 'Acompanhar entradas e saídas sem planilha, direto do celular.',
-    role: 'Construí o app de controle financeiro pessoal, com lançamentos, categorias e resumo do mês.',
-    tech: ['TypeScript', 'React', 'Vite'],
-    image: '/projects/financeiro.png',
-    imageAlt: 'App Financeiro',
-    links: [
-      { label: 'Ver demo', url: 'https://financeiro-sigma-blond.vercel.app', kind: 'demo' },
-      { label: 'Ver código', url: 'https://github.com/RenanGCV/Financeiro', kind: 'code' },
-    ],
-  },
-  {
     slug: 'conect-volei',
     title: 'Conect Vôlei',
     category: 'Produto',
