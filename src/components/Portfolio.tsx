@@ -1,32 +1,31 @@
-import { ExternalLink, Github, Download, Youtube } from 'lucide-react';
+import { ArrowUpRight, Github, Download, ExternalLink, Youtube } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
-// Dados dos projetos reais do Renan
 const projects = [
   {
-    id: 1,
     title: 'Labor Forum',
-    description: 'Um jogo criado utilizando Unity Engine, C# e Aseprite',
+    category: 'Jogo',
+    description: 'Jogo 2D de plataforma com narrativa, combate e progressão de habilidades.',
     image: 'https://img.youtube.com/vi/OMxOmWdakNw/maxresdefault.jpg',
-    tech: ['Unity', 'C#', 'Aseprite', 'Game Development'],
+    tech: ['Unity', 'C#', 'Aseprite', 'Game Design'],
     demo: 'https://renangcv.itch.io/labor-forum',
     repo: 'https://www.youtube.com/watch?v=OMxOmWdakNw',
     isGame: true
   },
   {
-    id: 2,
     title: 'Color War',
-    description: 'Um jogo desenvolvido com Unity Engine, C# e Aseprite',
+    category: 'Jogo',
+    description: 'Jogo multiplayer local com partidas rápidas, classes e habilidades únicas.',
     image: 'https://img.youtube.com/vi/mvKMMUMFpWY/maxresdefault.jpg',
-    tech: ['Unity', 'C#', 'Aseprite', 'Game Development'],
+    tech: ['Unity', 'C#', 'Aseprite', 'UI/UX'],
     demo: 'https://renangcv.itch.io/color-war',
     repo: 'https://www.youtube.com/watch?v=mvKMMUMFpWY',
     isGame: true
   },
   {
-    id: 3,
     title: 'Joalheria Luxury',
-    description: 'Landing page para uma joalheria desenvolvida com Vite, React e TypeScript',
+    category: 'Landing Page',
+    description: 'Landing page comercial para produto premium com foco em presença digital.',
     image: 'https://images.unsplash.com/photo-1573408301185-9146fe634ad0?q=80&w=1374&auto=format&fit=crop',
     tech: ['React', 'TypeScript', 'Vite', 'CSS'],
     demo: 'https://landing-page-joalheiria-luxury.netlify.app/',
@@ -34,21 +33,11 @@ const projects = [
     isGame: false
   },
   {
-    id: 4,
-    title: 'Academic Fashion',
-    description: 'Landing page para uma loja de roupas fitness com múltiplas tecnologias',
-    image: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?q=80&w=1470&auto=format&fit=crop',
-    tech: ['HTML/CSS', 'JavaScript', 'React', 'Vue', 'TypeScript', 'Node.js'],
-    demo: 'https://academic-fashon-landingpage.netlify.app/',
-    repo: '',
-    isGame: false
-  },
-  {
-    id: 5,
-    title: 'Landing Page Desenvolvimento Web',
-    description: 'Landing page para um desenvolvedor de sites com tecnologias modernas',
+    title: 'Sites Landing Page',
+    category: 'Web',
+    description: 'Página para serviço de desenvolvimento web com estrutura de conversão.',
     image: 'https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?q=80&w=1470&auto=format&fit=crop',
-    tech: ['HTML/CSS', 'JavaScript', 'React', 'Vue', 'TypeScript', 'Node.js'],
+    tech: ['React', 'Vue', 'TypeScript', 'Node.js'],
     demo: 'https://sites-landing-page.vercel.app/',
     repo: 'https://github.com/RenanGCV/SitesLandingPage',
     isGame: false
@@ -57,115 +46,117 @@ const projects = [
 
 const Portfolio = () => {
   return (
-    <section id="portfolio" className="section-container bg-gray-50 dark:bg-gray-900">
+    <section id="portfolio" className="section-container bg-background">
       <AnimatedSection>
-        <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-          Portfólio
-        </div>
-      </AnimatedSection>
-      
-      <AnimatedSection delay={200}>
-        <h2 className="section-title">Projetos em Destaque</h2>
-      </AnimatedSection>
-      
-      <AnimatedSection delay={400}>
-        <p className="section-subtitle">
-          Aqui estão alguns dos meus projetos recentes que demonstram minhas habilidades e expertise.
-        </p>
-      </AnimatedSection>
-      
-      <div className="grid md:grid-cols-2 gap-8 mt-12">
-        {projects.map((project, index) => (
-          <AnimatedSection key={project.id} delay={index * 200 + 600}>
-            <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-sm border border-gray-100 dark:border-gray-700 card-hover">
-              <div className="relative h-64 w-full overflow-hidden">
-                <img
-                  src={project.image}
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
-                />
-              </div>
-              <div className="p-6">
-                <h3 className="font-display text-xl font-semibold mb-2">{project.title}</h3>
-                <p className="text-muted-foreground mb-4">{project.description}</p>
-                
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tech.map((tech) => (
-                    <span 
-                      key={tech} 
-                      className="px-3 py-1 bg-secondary rounded-full text-xs font-medium text-secondary-foreground"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                
-                <div className="flex gap-4 mt-4">
-                  {project.isGame ? (
-                    <>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-                      >
-                        <Download size={16} />
-                        Download Jogo
-                      </a>
-                      <a
-                        href={project.repo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
-                      >
-                        <Youtube size={16} />
-                        Ver Trailer
-                      </a>
-                    </>
-                  ) : (
-                    <>
-                      <a
-                        href={project.demo}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 text-primary font-medium hover:underline"
-                      >
-                        <ExternalLink size={16} />
-                        Demo ao Vivo
-                      </a>
-                      {project.repo && (
-                        <a
-                          href={project.repo}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="inline-flex items-center gap-2 text-muted-foreground font-medium hover:text-primary transition-colors"
-                        >
-                          <Github size={16} />
-                          Código Fonte
-                        </a>
-                      )}
-                    </>
-                  )}
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        ))}
-      </div>
-      
-      <AnimatedSection delay={1200}>
-        <div className="mt-12 text-center">
+        <div className="section-kicker">02 — Projetos</div>
+        <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+          <div>
+            <h2 className="section-title">
+              Projetos <span className="text-primary">/</span>
+            </h2>
+            <p className="section-subtitle mb-0">
+              Jogos, sistemas e landing pages que mostram técnica, visual e entrega.
+            </p>
+          </div>
           <a
             href="https://github.com/RenanGCV"
             target="_blank"
             rel="noopener noreferrer"
-            className="button-secondary inline-flex items-center gap-2"
+            className="button-secondary self-start"
           >
-            <Github size={16} />
-            Ver Mais no GitHub
+            Ver GitHub
+            <Github size={18} />
           </a>
         </div>
       </AnimatedSection>
+
+      <div className="mt-12 grid gap-6 lg:grid-cols-[1fr_340px]">
+        <div className="grid gap-6 md:grid-cols-2">
+          {projects.map((project, index) => (
+            <AnimatedSection key={project.title} delay={index * 120}>
+              <article className="brand-panel card-hover group h-full overflow-hidden">
+                <div className="relative h-56 overflow-hidden">
+                  <img
+                    src={project.image}
+                    alt={project.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                  <span className="absolute right-4 top-4 rounded-md bg-primary px-3 py-1 font-mono text-xs font-bold text-primary-foreground">
+                    {project.category}
+                  </span>
+                </div>
+                <div className="p-5">
+                  <div className="mb-3 flex items-start justify-between gap-4">
+                    <h3 className="font-display text-2xl font-bold">{project.title}</h3>
+                    <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                  </div>
+                  <p className="mb-5 text-[0.95rem] leading-relaxed text-muted-foreground">{project.description}</p>
+
+                  <div className="mb-5 flex flex-wrap gap-2">
+                    {project.tech.map((tech) => (
+                      <span key={tech} className="rounded-md bg-primary/15 px-2.5 py-1 text-xs font-semibold text-foreground">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+
+                  <div className="flex flex-wrap gap-4 text-sm font-semibold">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 text-foreground transition-colors hover:text-primary"
+                    >
+                      {project.isGame ? <Download size={16} /> : <ExternalLink size={16} />}
+                      {project.isGame ? 'Download' : 'Demo'}
+                    </a>
+                    {project.repo && (
+                      <a
+                        href={project.repo}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 text-muted-foreground transition-colors hover:text-primary"
+                      >
+                        {project.isGame ? <Youtube size={16} /> : <Github size={16} />}
+                        {project.isGame ? 'Trailer' : 'Código'}
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </article>
+            </AnimatedSection>
+          ))}
+        </div>
+
+        <AnimatedSection delay={300} animation="slide-in-right">
+          <aside className="deep-panel sticky top-24 min-h-96 overflow-hidden p-6">
+            <Github className="mb-8 h-9 w-9 text-primary" />
+            <h3 className="mb-4 font-display text-3xl font-bold">
+              Mais projetos e código no GitHub
+            </h3>
+            <p className="mb-8 text-[0.95rem] leading-relaxed text-accent-foreground/80">
+              Repositórios, estudos e experimentos que mostram meu processo de evolução em código.
+            </p>
+            <a
+              href="https://github.com/RenanGCV"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button-primary"
+            >
+              Acessar repositórios
+              <ArrowUpRight size={18} />
+            </a>
+            <pre className="mt-10 rounded-lg border border-primary/20 bg-black/25 p-4 font-mono text-xs leading-6 text-primary">
+{`const foco = [
+  'Código',
+  'Design',
+  'Jogos',
+  'Produto'
+];`}
+            </pre>
+          </aside>
+        </AnimatedSection>
+      </div>
     </section>
   );
 };

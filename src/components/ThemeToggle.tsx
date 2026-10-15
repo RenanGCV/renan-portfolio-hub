@@ -36,10 +36,10 @@ const ThemeToggle = () => {
   };
 
   return (
-    <Toggle 
-      pressed={isDarkMode} 
+    <Toggle
+      pressed={isDarkMode}
       onPressedChange={toggleTheme}
-      className="rounded-full p-2 bg-secondary dark:bg-secondary/70"
+      className="rounded-lg border border-border bg-card/70 p-2 text-foreground data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
       aria-label="Alternar tema"
     >
       {isDarkMode ? (

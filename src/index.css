@@ -1,5 +1,4 @@
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
 @import url('https://rsms.me/inter/inter.css');
 
 @tailwind base;
@@ -8,65 +7,65 @@
 
 @layer base {
   :root {
-    --background: 210 20% 98%;
-    --foreground: 210 40% 10%;
+    --background: 177 100% 93%;
+    --foreground: 100 49% 14%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 210 40% 10%;
+    --card: 180 60% 98%;
+    --card-foreground: 100 49% 14%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 210 40% 10%;
+    --popover: 180 60% 98%;
+    --popover-foreground: 100 49% 14%;
 
-    --primary: 210 100% 50%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 176 100% 66%;
+    --primary-foreground: 100 49% 14%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 210 40% 10%;
+    --secondary: 141 34% 51%;
+    --secondary-foreground: 177 100% 93%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 174 50% 88%;
+    --muted-foreground: 104 22% 32%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 210 40% 10%;
+    --accent: 100 44% 23%;
+    --accent-foreground: 177 100% 93%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 177 100% 93%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 210 100% 50%;
+    --border: 142 28% 72%;
+    --input: 142 28% 72%;
+    --ring: 176 100% 66%;
 
-    --radius: 0.8rem;
+    --radius: 0.625rem;
   }
 
   .dark {
-    --background: 210 40% 3.9%;
-    --foreground: 210 40% 98%;
+    --background: 105 50% 10%;
+    --foreground: 177 100% 93%;
 
-    --card: 210 40% 3.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 104 42% 15%;
+    --card-foreground: 177 100% 93%;
 
-    --popover: 210 40% 3.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 104 42% 15%;
+    --popover-foreground: 177 100% 93%;
 
-    --primary: 210 100% 50%;
-    --primary-foreground: 210 40% 98%;
+    --primary: 176 100% 66%;
+    --primary-foreground: 105 50% 10%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 141 34% 51%;
+    --secondary-foreground: 177 100% 93%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 102 34% 18%;
+    --muted-foreground: 170 42% 82%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 101 44% 20%;
+    --accent-foreground: 177 100% 93%;
 
     --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 177 100% 93%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
+    --border: 141 28% 34%;
+    --input: 141 28% 34%;
+    --ring: 176 100% 66%;
   }
 }
 
@@ -75,61 +74,91 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
     @apply bg-background text-foreground antialiased;
+    background:
+      radial-gradient(circle at 12% 8%, hsl(var(--primary) / 0.12), transparent 28rem),
+      radial-gradient(circle at 86% 14%, hsl(var(--secondary) / 0.12), transparent 30rem),
+      hsl(var(--background));
     font-feature-settings: "ss01", "ss02", "cv01", "cv02";
   }
 
   ::selection {
-    @apply bg-primary/20;
-  }
-
-  html {
-    scroll-behavior: smooth;
+    @apply bg-primary/30;
   }
 }
 
 @layer components {
   .section-container {
-    @apply container px-4 md:px-6 lg:px-8 py-16 md:py-24;
+    @apply container relative px-4 md:px-6 lg:px-8 py-16 md:py-24;
   }
 
   .section-title {
-    @apply font-display text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4;
+    @apply font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-normal mb-4;
   }
 
   .section-subtitle {
-    @apply text-muted-foreground text-lg md:text-xl mb-12 max-w-3xl;
+    @apply text-muted-foreground text-base md:text-lg mb-10 max-w-3xl leading-relaxed;
+  }
+
+  .section-kicker {
+    @apply inline-flex items-center gap-2 font-mono text-xs md:text-sm text-secondary dark:text-primary mb-4;
+  }
+
+  .brand-panel {
+    @apply rounded-lg border border-border/70 bg-card/90 shadow-sm backdrop-blur-sm;
+  }
+
+  .deep-panel {
+    @apply rounded-lg border border-primary/25 bg-accent text-accent-foreground shadow-lg shadow-black/10;
   }
 
   .card-hover {
-    @apply transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
-  }
-
-  .glass-panel {
-    @apply bg-white/70 backdrop-blur-lg border border-white/20 shadow-sm dark:bg-black/40 dark:border-white/10;
+    @apply transition-transform duration-300 hover:-translate-y-1;
   }
 
   .button-primary {
-    @apply bg-primary text-primary-foreground rounded-full px-6 py-2 
-           transition-all duration-300 hover:shadow-md hover:bg-primary/90 
-           active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40;
   }
 
   .button-secondary {
-    @apply bg-secondary text-secondary-foreground rounded-full px-6 py-2 
-           transition-all duration-300 hover:shadow-sm hover:bg-secondary/90 
-           active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-secondary/30;
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground transition-all duration-300 hover:border-primary hover:text-primary active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30;
   }
 
-  .animate-on-scroll {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+  .gsap-reveal {
+    will-change: opacity, transform, filter;
   }
 
-  .animate-on-scroll.animate {
-    opacity: 1;
-    transform: translateY(0);
+  .court-lines {
+    background-image:
+      linear-gradient(135deg, transparent 0 46%, hsl(var(--primary) / 0.16) 46% 46.45%, transparent 46.45% 100%),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
+      linear-gradient(0deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px);
+    background-size: 100% 100%, 42px 42px, 42px 42px;
+  }
+
+  .hero-copy-panel {
+    background: hsl(var(--background) / 0.94);
+  }
+
+  @media (min-width: 768px) {
+    .hero-copy-panel {
+      background: transparent;
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

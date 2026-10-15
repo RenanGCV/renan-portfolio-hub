@@ -1,131 +1,122 @@
-
-import { useState } from 'react';
-import { Globe, ShoppingCart, Smartphone, Database } from 'lucide-react';
+import { ArrowRight, Code2, LayoutTemplate, PlugZap, Rocket, Settings2, ShoppingCart, Smartphone } from 'lucide-react';
 import AnimatedSection from './AnimatedSection';
 
-type Service = {
-  id: number;
-  title: string;
-  description: string;
-  icon: React.ReactNode;
-  features: string[];
-};
-
-const services: Service[] = [
+const services = [
   {
-    id: 1,
-    title: 'Desenvolvimento de Websites',
-    description: 'Sites personalizados construídos para atender às suas necessidades e objetivos específicos.',
-    icon: <Globe className="w-10 h-10" />,
-    features: [
-      'Design responsivo para todos os dispositivos',
-      'Otimização para SEO',
-      'Carregamento rápido',
-      'Sistemas de gerenciamento de conteúdo',
-      'Animações e interações personalizadas'
-    ]
+    title: 'Sites e Landing Pages',
+    description: 'Páginas rápidas, responsivas e otimizadas para conversão.',
+    icon: LayoutTemplate,
+    deliverables: ['Layout estratégico', 'Design responsivo', 'SEO básico']
   },
   {
-    id: 2,
-    title: 'Criação de E-commerce',
-    description: 'Lojas online que impulsionam vendas e proporcionam ótimas experiências de compra.',
-    icon: <ShoppingCart className="w-10 h-10" />,
-    features: [
-      'Gerenciamento de catálogo de produtos',
-      'Gateways de pagamento seguros',
-      'Gestão de estoque',
-      'Contas de clientes',
-      'Sistema de rastreamento de pedidos'
-    ]
+    title: 'Sistemas Web',
+    description: 'Soluções completas para gerenciar processos e dados.',
+    icon: Code2,
+    deliverables: ['Painel administrativo', 'Regras de negócio', 'Relatórios e métricas']
   },
   {
-    id: 3,
-    title: 'Desenvolvimento de Aplicativos',
-    description: 'Aplicativos móveis e web adaptados às necessidades do seu negócio.',
-    icon: <Smartphone className="w-10 h-10" />,
-    features: [
-      'Compatibilidade multiplataforma',
-      'Interfaces de usuário intuitivas',
-      'Funcionalidade offline',
-      'Notificações push',
-      'Otimização de desempenho'
-    ]
+    title: 'E-commerce',
+    description: 'Lojas online completas com pagamento, estoque e gestão.',
+    icon: ShoppingCart,
+    deliverables: ['Catálogo de produtos', 'Carrinho e checkout', 'Integrações e gestão']
   },
   {
-    id: 4,
-    title: 'Desenvolvimento de Sistemas',
-    description: 'Sistemas de backend e bancos de dados robustos para as operações do seu negócio.',
-    icon: <Database className="w-10 h-10" />,
-    features: [
-      'Design e otimização de banco de dados',
-      'Desenvolvimento de API',
-      'Integração de sistemas',
-      'Implementação de segurança',
-      'Arquitetura escalável'
-    ]
+    title: 'Apps e Protótipos',
+    description: 'Protótipos interativos e apps focados em experiência.',
+    icon: Smartphone,
+    deliverables: ['Protótipo navegável', 'UI/UX funcional', 'MVP e validação']
+  },
+  {
+    title: 'APIs e Integrações',
+    description: 'APIs seguras que conectam sistemas, serviços e automações.',
+    icon: PlugZap,
+    deliverables: ['APIs RESTful', 'Webhooks e jobs', 'Documentação e testes']
   }
 ];
 
-const Services = () => {
-  const [hoveredService, setHoveredService] = useState<number | null>(null);
+const process = [
+  { title: 'Entender', description: 'Alinho objetivos, público, prazo e funcionalidade.' },
+  { title: 'Construir', description: 'Desenvolvo com código limpo, foco em desempenho e experiência.' },
+  { title: 'Ajustar', description: 'Testamos, validamos e refinamos até o produto fazer sentido.' },
+  { title: 'Publicar', description: 'Coloco no ar com segurança e deixo o caminho pronto para evoluir.' }
+];
 
+const Services = () => {
   const handleRequestQuote = (service: string) => {
-    const message = encodeURIComponent(`Olá Renan, estou interessado no seu serviço de ${service}. Pode me fornecer mais informações?`);
+    const message = encodeURIComponent(`Olá Renan, quero conversar sobre ${service}. Pode me ajudar a entender o melhor caminho?`);
     window.open(`https://wa.me/5521999880830?text=${message}`, '_blank');
   };
 
   return (
-    <section id="services" className="section-container">
+    <section id="services" className="section-container court-lines">
       <AnimatedSection>
-        <div className="inline-block mb-4 px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium">
-          Serviços
-        </div>
-      </AnimatedSection>
-      
-      <AnimatedSection delay={200}>
-        <h2 className="section-title">O Que Eu Ofereço</h2>
-      </AnimatedSection>
-      
-      <AnimatedSection delay={400}>
+        <div className="section-kicker">&gt;_ o que eu faço</div>
+        <h2 className="section-title">Serviços</h2>
         <p className="section-subtitle">
-          Forneço soluções de desenvolvimento completas, adaptadas às suas necessidades específicas.
+          Do protótipo ao deploy, eu estruturo, desenvolvo e ajusto produtos digitais.
         </p>
       </AnimatedSection>
-      
-      <div className="grid md:grid-cols-2 gap-8 mt-12">
+
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
         {services.map((service, index) => (
-          <AnimatedSection key={service.id} delay={index * 200 + 600}>
-            <div 
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 border border-gray-100 dark:border-gray-700 shadow-sm transition-all duration-300 h-full flex flex-col"
-              onMouseEnter={() => setHoveredService(service.id)}
-              onMouseLeave={() => setHoveredService(null)}
-            >
-              <div className={`p-4 rounded-2xl bg-primary/10 text-primary inline-flex mb-6 transition-all duration-300 ${hoveredService === service.id ? 'scale-110' : ''}`}>
-                {service.icon}
+          <AnimatedSection key={service.title} delay={index * 90}>
+            <article className="brand-panel group flex h-full flex-col overflow-hidden">
+              <div className="flex items-center justify-between bg-accent p-5 text-accent-foreground">
+                <service.icon className="h-9 w-9 text-primary" />
+                <span className="font-mono text-lg text-primary/70">0{index + 1}</span>
               </div>
-              
-              <h3 className="font-display text-xl font-semibold mb-3">{service.title}</h3>
-              <p className="text-muted-foreground mb-6">{service.description}</p>
-              
-              <ul className="space-y-2 mb-8 flex-grow">
-                {service.features.map((feature, i) => (
-                  <li key={i} className="flex items-start">
-                    <div className="mr-2 mt-1 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0"></div>
-                    <span className="text-muted-foreground text-sm">{feature}</span>
-                  </li>
-                ))}
-              </ul>
-              
-              <button
-                onClick={() => handleRequestQuote(service.title)}
-                className="button-primary mt-auto self-start"
-              >
-                Solicitar Orçamento
-              </button>
-            </div>
+              <div className="flex flex-1 flex-col p-5">
+                <h3 className="mb-3 font-display text-xl font-bold">{service.title}</h3>
+                <p className="mb-5 text-[0.95rem] leading-relaxed text-muted-foreground">{service.description}</p>
+                <p className="mb-3 font-mono text-xs font-bold uppercase text-secondary dark:text-primary">
+                  Entregáveis
+                </p>
+                <ul className="mb-6 space-y-2">
+                  {service.deliverables.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-[0.92rem] text-muted-foreground">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <button
+                  onClick={() => handleRequestQuote(service.title)}
+                  className="mt-auto inline-flex items-center justify-between border-t border-border pt-4 text-sm font-semibold text-foreground transition-colors hover:text-primary"
+                >
+                  Conversar sobre isso
+                  <ArrowRight size={17} />
+                </button>
+              </div>
+            </article>
           </AnimatedSection>
         ))}
       </div>
+
+      <AnimatedSection delay={250} animation="fade-in">
+        <div className="deep-panel mt-10 grid gap-8 p-6 md:grid-cols-[240px_1fr] md:p-8">
+          <div>
+            <h3 className="font-display text-3xl font-bold text-primary">Como trabalho</h3>
+            <p className="mt-3 text-sm leading-relaxed text-accent-foreground/80">
+              Processo leve, colaborativo e com entregas reais.
+            </p>
+            <div className="mt-8 rounded-lg border border-primary/20 p-4 font-mono text-sm text-primary">
+              &gt; foco: clareza_
+            </div>
+          </div>
+          <div className="grid gap-5 md:grid-cols-4">
+            {process.map((step, index) => (
+              <div key={step.title} className="relative">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/15 text-primary">
+                  {index === 0 ? <Settings2 /> : index === 1 ? <Code2 /> : index === 2 ? <Settings2 /> : <Rocket />}
+                </div>
+                <p className="mb-2 font-mono text-sm text-primary">0{index + 1}</p>
+                <h4 className="mb-2 font-display text-xl font-semibold">{step.title}</h4>
+                <p className="text-sm leading-relaxed text-accent-foreground/80">{step.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </AnimatedSection>
     </section>
   );
 };

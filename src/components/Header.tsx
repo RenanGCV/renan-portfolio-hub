@@ -1,111 +1,82 @@
-
-import { useState, useEffect } from 'react';
-import { cn } from '@/lib/utils';
+import { useEffect, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import { cn } from '@/lib/utils';
 import ThemeToggle from './ThemeToggle';
+
+const navItems = [
+  { href: '#portfolio', label: 'Projetos' },
+  { href: '#services', label: 'Serviços' },
+  { href: '#contact', label: 'Contato' }
+];
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleMenu = () => setIsOpen(!isOpen);
-
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 10);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 12);
 
+    handleScroll();
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
   useEffect(() => {
-    if (isOpen) {
-      document.body.style.overflow = 'hidden';
-    } else {
+    document.body.style.overflow = isOpen ? 'hidden' : '';
+    return () => {
       document.body.style.overflow = '';
-    }
+    };
   }, [isOpen]);
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
         isScrolled
-          ? 'bg-white/70 dark:bg-black/70 backdrop-blur-lg shadow-sm py-3'
+          ? 'border-b border-border/70 bg-background/85 py-3 shadow-sm backdrop-blur-xl'
           : 'bg-transparent py-5'
       )}
     >
-      <div className="container px-4 md:px-6 lg:px-8 flex items-center justify-between">
-        <a
-          href="#"
-          className="text-foreground text-lg font-display font-semibold tracking-tight"
-        >
-          Renan Gonçalves
+      <div className="container flex items-center justify-between px-4 md:px-6 lg:px-8">
+        <a href="#introduction" className="group flex items-center gap-3" aria-label="Voltar para o início">
+          <span className="font-display text-2xl font-extrabold tracking-normal text-foreground transition-colors group-hover:text-primary">
+            RG
+          </span>
+          <span className="h-8 w-px bg-border" />
+          <span className="hidden font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground sm:block">
+            Renan<br />Gonçalves
+          </span>
         </a>
 
         <nav
           className={cn(
-            'fixed inset-0 bg-white/95 dark:bg-black/95 backdrop-blur-lg md:static md:bg-transparent md:backdrop-blur-none transition-transform duration-300',
-            isOpen
-              ? 'translate-x-0 flex items-center justify-center'
-              : 'translate-x-full md:translate-x-0',
-            'md:flex md:items-center md:space-x-8'
+            'fixed inset-0 bg-background/96 backdrop-blur-xl transition-transform duration-300 md:static md:block md:bg-transparent md:backdrop-blur-none',
+            isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'
           )}
         >
-          <ul className="flex flex-col md:flex-row items-center space-y-6 md:space-y-0 md:space-x-8">
-            <li>
-              <a
-                href="#introduction"
-                className="text-foreground font-medium hover:text-primary hover:opacity-80 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Sobre
-              </a>
-            </li>
-            <li>
-              <a
-                href="#portfolio"
-                className="text-foreground font-medium hover:text-primary hover:opacity-80 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Portfólio
-              </a>
-            </li>
-            <li>
-              <a
-                href="#services"
-                className="text-foreground font-medium hover:text-primary hover:opacity-80 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Serviços
-              </a>
-            </li>
-            <li>
-              <a
-                href="#contact"
-                className="text-foreground font-medium hover:text-primary hover:opacity-80 transition-colors"
-                onClick={() => setIsOpen(false)}
-              >
-                Contato
-              </a>
-            </li>
+          <ul className="flex h-full flex-col items-center justify-center gap-8 md:h-auto md:flex-row md:gap-10">
+            {navItems.map((item) => (
+              <li key={item.href}>
+                <a
+                  href={item.href}
+                  className="relative font-medium text-foreground transition-colors after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:text-primary hover:after:w-full"
+                  onClick={() => setIsOpen(false)}
+                >
+                  {item.label}
+                </a>
+              </li>
+            ))}
           </ul>
         </nav>
 
-        <div className="flex items-center gap-4">
+        <div className="flex items-center gap-3">
           <ThemeToggle />
-          
           <button
-            onClick={toggleMenu}
-            className="relative z-50 block md:hidden text-foreground"
+            onClick={() => setIsOpen((open) => !open)}
+            className="relative z-50 rounded-lg border border-border bg-card/70 p-2 text-foreground md:hidden"
             aria-label="Alternar menu"
           >
-            {isOpen ? (
-              <X className="h-6 w-6 transition-all duration-300" />
-            ) : (
-              <Menu className="h-6 w-6 transition-all duration-300" />
-            )}
+            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>

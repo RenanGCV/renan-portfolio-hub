@@ -1,4 +1,3 @@
-
 import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Introduction from '@/components/Introduction';
@@ -9,40 +8,19 @@ import Footer from '@/components/Footer';
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Renan Gonçalves - Desenvolvedor Full Stack";
-    
-    // Iniciar em modo escuro como padrão se não houver preferência salva
+    document.title = 'Renan Gonçalves - Desenvolvedor Criativo Full Stack';
+
     if (!localStorage.getItem('theme')) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
     } else {
       const theme = localStorage.getItem('theme');
-      if (theme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
+      document.documentElement.classList.toggle('dark', theme === 'dark');
     }
-    
-    // Animação no scroll
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('animate');
-        }
-      });
-    }, { threshold: 0.1 });
-    
-    const animateElements = document.querySelectorAll('.animate-on-scroll');
-    animateElements.forEach((el) => observer.observe(el));
-    
-    return () => {
-      animateElements.forEach((el) => observer.unobserve(el));
-    };
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col overflow-hidden">
       <Header />
       <main className="flex-grow">
         <Introduction />
