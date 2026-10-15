@@ -1,3 +1,5 @@
+import { achievements } from '@/data/achievements';
+
 export type ProjectCategory = 'Produto' | 'Jogo' | 'Web' | 'Interno';
 
 export interface ProjectLink {
@@ -222,5 +224,5 @@ export const stats = [
     label: 'sistemas no ar',
   },
   { value: `${projects.filter((p) => p.category === 'Jogo').length}`, label: 'jogos publicados' },
-  { value: '2', label: 'pódios em hackathons' },
+  { value: `${achievements.length}`, label: 'hackathons disputados' },
 ];

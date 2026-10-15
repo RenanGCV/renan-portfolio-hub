@@ -22,7 +22,7 @@ export const social = [
   {
     name: 'LinkedIn',
     handle: 'Renan Gonçalves',
-    url: 'https://www.linkedin.com/in/renan-gon%C3%A7alves-9a8b47268/',
+    url: 'https://www.linkedin.com/in/renan-teodoro-lopes-gon%C3%A7alves-804014221',
     icon: 'linkedin',
   },
   {

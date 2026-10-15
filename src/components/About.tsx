@@ -2,7 +2,7 @@ import { Trophy } from 'lucide-react';
 import AnimatedSection from '@/components/AnimatedSection';
 import Monogram from '@/components/Monogram';
 import { about, profile } from '@/data/profile';
-import { achievements, achievementsSummary } from '@/data/achievements';
+import { achievements, achievementsPhoto, achievementsSummary } from '@/data/achievements';
 import { contact } from '@/data/social';
 
 const About = () => (
@@ -82,6 +82,21 @@ const About = () => (
                 </li>
               ))}
             </ul>
+
+            <figure className="mt-6 border-t border-deep-foreground/15 pt-5">
+              <img
+                src={achievementsPhoto.src}
+                alt={achievementsPhoto.alt}
+                loading="lazy"
+                decoding="async"
+                width={1125}
+                height={844}
+                className="aspect-[4/3] w-full rounded object-cover [object-position:50%_35%]"
+              />
+              <figcaption className="mt-2.5 text-xs text-deep-foreground/55">
+                Youth Summit 2022, com o certificado da equipe.
+              </figcaption>
+            </figure>
           </div>
         </AnimatedSection>
       </div>
