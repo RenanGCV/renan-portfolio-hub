@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Space+Grotesk:wght@600;700&family=JetBrains+Mono:wght@500&display=swap" />
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:1280px; height:720px; overflow:hidden; background:#101417;
+    font-family:Inter,sans-serif; color:#F4F7F6; position:relative;
+  }
+  .grid {
+    position:absolute; inset:0;
+    background-image:
+      linear-gradient(135deg, transparent 0 68%, rgba(0,194,184,.18) 68% 68.25%, transparent 68.25% 100%),
+      linear-gradient(90deg, rgba(244,247,246,.04) 1px, transparent 1px),
+      linear-gradient(0deg, rgba(244,247,246,.04) 1px, transparent 1px);
+    background-size:100% 100%, 60px 60px, 60px 60px;
+  }
+  .wrap { position:relative; padding:64px 70px; height:100%; display:flex; flex-direction:column; }
+  .kicker { font-family:'JetBrains Mono',monospace; font-size:22px; letter-spacing:.2em; text-transform:uppercase; color:#00C2B8; }
+  h1 { font-family:'Space Grotesk',sans-serif; font-size:60px; font-weight:700; letter-spacing:-.02em; margin-top:20px; line-height:1.08; max-width:1000px; }
+
+  .flow { margin-top:auto; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+  .col { border:2px solid rgba(244,247,246,.18); border-radius:14px; padding:28px 24px; background:rgba(244,247,246,.03); }
+  .col.on { border-color:#00C2B8; background:rgba(0,194,184,.1); }
+  .num { font-family:'JetBrains Mono',monospace; font-size:20px; color:#00C2B8; letter-spacing:.14em; }
+  .col h2 { font-family:'Space Grotesk',sans-serif; font-size:32px; font-weight:600; margin-top:16px; line-height:1.15; }
+  .col p { margin-top:14px; font-size:21px; line-height:1.4; color:rgba(244,247,246,.6); }
+
+  .foot { margin-top:40px; display:flex; align-items:center; justify-content:space-between; border-top:2px solid rgba(244,247,246,.16); padding-top:26px; }
+  .foot .left { display:flex; align-items:center; gap:14px; }
+  .dot { width:11px; height:11px; border-radius:50%; background:#F7C948; }
+  .foot span { font-size:22px; color:rgba(244,247,246,.6); }
+  .brand { font-family:'JetBrains Mono',monospace; font-size:22px; letter-spacing:.2em; color:rgba(244,247,246,.4); }
+</style>
+</head>
+<body>
+<div class="grid"></div>
+<div class="wrap">
+  <div class="kicker">Soluções internas · BlueVecHub</div>
+  <h1>Menos tarefa repetida, mais contexto na mão da equipe.</h1>
+
+  <div class="flow">
+    <div class="col">
+      <div class="num">01</div>
+      <h2>Tickets</h2>
+      <p>Chamados de TI com fila, responsável e histórico.</p>
+    </div>
+    <div class="col">
+      <div class="num">02</div>
+      <h2>RAG</h2>
+      <p>A documentação interna vira resposta com a fonte.</p>
+    </div>
+    <div class="col on">
+      <div class="num">03</div>
+      <h2>MCP</h2>
+      <p>IA com acesso estruturado ao produto.</p>
+    </div>
+    <div class="col">
+      <div class="num">04</div>
+      <h2>Workspace</h2>
+      <p>Ambiente padrão, reaproveitado a cada projeto.</p>
+    </div>
+  </div>
+
+  <div class="foot">
+    <div class="left"><div class="dot"></div><span>Em uso interno · detalhes sob confidencialidade</span></div>
+    <div class="brand">R/GCV</div>
+  </div>
+</div>
+</body>
+</html>

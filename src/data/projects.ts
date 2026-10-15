@@ -37,6 +37,8 @@ export const projects: Project[] = [
       'Fui um dos dois desenvolvedores principais, ao lado do Cassio Almeida, numa equipe de quatro pessoas. Construí a plataforma que conecta escolas e produtores locais, com uma camada de IA que lê as chamadas públicas e sugere os fornecedores compatíveis.',
     result: '14º lugar entre 50 equipes, em 48 horas de hackathon.',
     tech: ['Next.js 14', 'FastAPI', 'Python', 'OpenAI', 'Tailwind CSS'],
+    image: '/projects/conecta-merenda.png',
+    imageAlt: 'Identidade do Conecta Merenda: a tecnologia que une o campo à escola',
     links: [
       { label: 'Ver código', url: 'https://github.com/RenanGCV/Conecta-Merenda-', kind: 'code' },
       {
@@ -58,6 +60,9 @@ export const projects: Project[] = [
       'Desenvolvi um sistema de tickets para o time de TI, um servidor MCP que dá às ferramentas de IA acesso estruturado ao nosso produto, uma busca com RAG sobre a documentação interna e a arquitetura de trabalho em workspace que padroniza como a equipe desenvolve.',
     result: 'Soluções em uso interno. Detalhes de implementação sob confidencialidade.',
     tech: ['TypeScript', 'Python', 'MCP', 'RAG', 'APIs'],
+    image: '/projects/bluevechub.png',
+    imageAlt:
+      'Fluxo das soluções internas: sistema de tickets, busca com RAG, servidor MCP e arquitetura de workspace',
     links: [],
     featured: true,
   },
