@@ -82,8 +82,8 @@ const Header = () => {
       </a>
 
       <div className="container flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
-        <a href="#top" className="flex items-center gap-2.5" aria-label={profile.name}>
-          <Monogram className="h-8 w-8" />
+        <a href="#top" className="flex items-center gap-2.5">
+          <Monogram className="h-8 w-8" decorative />
           <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground">
             {profile.monogram}
           </span>

@@ -52,11 +52,10 @@ const Introduction = () => (
           <dl className="mt-14 grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-4">
             {stats.map((stat) => (
               <div key={stat.label} className="border-t border-border pt-3">
-                <dt className="sr-only">{stat.label}</dt>
                 <dd className="font-display text-3xl font-semibold text-foreground">
                   {stat.value}
                 </dd>
-                <p className="mt-1 text-sm leading-snug text-muted-foreground">{stat.label}</p>
+                <dt className="mt-1 text-sm leading-snug text-muted-foreground">{stat.label}</dt>
               </div>
             ))}
           </dl>

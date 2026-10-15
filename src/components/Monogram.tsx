@@ -4,15 +4,18 @@ import { cn } from '@/lib/utils';
 interface MonogramProps {
   className?: string;
   title?: string;
+  /** Use quando o texto ao lado já nomeia a marca. */
+  decorative?: boolean;
 }
 
 /** Marca R/GCV — quadrado grafite com a barra ciano. */
-const Monogram: React.FC<MonogramProps> = ({ className, title = 'R/GCV' }) => (
+const Monogram: React.FC<MonogramProps> = ({ className, title = 'R/GCV', decorative }) => (
   <svg
     viewBox="0 0 64 64"
     className={cn('h-8 w-8', className)}
-    role="img"
-    aria-label={title}
+    role={decorative ? 'presentation' : 'img'}
+    aria-label={decorative ? undefined : title}
+    aria-hidden={decorative || undefined}
     focusable="false"
   >
     <rect width="64" height="64" rx="12" fill="hsl(var(--deep))" />
