@@ -1,85 +1,160 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { Menu, X } from 'lucide-react';
+import ThemeToggle from '@/components/ThemeToggle';
+import Monogram from '@/components/Monogram';
+import { profile } from '@/data/profile';
+import { whatsappLink } from '@/data/social';
 import { cn } from '@/lib/utils';
-import ThemeToggle from './ThemeToggle';
 
 const navItems = [
-  { href: '#portfolio', label: 'Projetos' },
-  { href: '#services', label: 'Serviços' },
-  { href: '#contact', label: 'Contato' }
+  { label: 'Projetos', href: '#projetos' },
+  { label: 'Stack', href: '#stack' },
+  { label: 'Sobre', href: '#sobre' },
+  { label: 'Serviços', href: '#servicos' },
+  { label: 'Contato', href: '#contato' },
 ];
 
 const Header = () => {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+  const panelRef = useRef<HTMLDivElement>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setIsScrolled(window.scrollY > 12);
+    const onScroll = () => setScrolled(window.scrollY > 16);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
 
-    handleScroll();
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    triggerRef.current?.focus();
   }, []);
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-    return () => {
-      document.body.style.overflow = '';
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        closeMenu();
+        return;
+      }
+      if (event.key !== 'Tab') return;
+
+      const focusable = panelRef.current?.querySelectorAll<HTMLElement>('a, button');
+      if (!focusable?.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
     };
-  }, [isOpen]);
+
+    document.addEventListener('keydown', onKeyDown);
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    panelRef.current?.querySelector<HTMLElement>('a')?.focus();
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown);
+      document.body.style.overflow = previousOverflow;
+    };
+  }, [menuOpen, closeMenu]);
 
   return (
     <header
       className={cn(
-        'fixed inset-x-0 top-0 z-50 transition-all duration-300',
-        isScrolled
-          ? 'border-b border-border/70 bg-background/85 py-3 shadow-sm backdrop-blur-xl'
-          : 'bg-transparent py-5'
+        'fixed inset-x-0 top-0 z-50 transition-colors duration-300',
+        scrolled ? 'border-b border-border bg-background/90 backdrop-blur' : 'bg-transparent',
       )}
     >
-      <div className="container flex items-center justify-between px-4 md:px-6 lg:px-8">
-        <a href="#introduction" className="group flex items-center gap-3" aria-label="Voltar para o início">
-          <span className="font-display text-2xl font-extrabold tracking-normal text-foreground transition-colors group-hover:text-primary">
-            RG
-          </span>
-          <span className="h-8 w-px bg-border" />
-          <span className="hidden font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground sm:block">
-            Renan<br />Gonçalves
+      <a
+        href="#projetos"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-primary focus:px-4 focus:py-2 focus:text-primary-foreground"
+      >
+        Pular para o conteúdo
+      </a>
+
+      <div className="container flex h-16 items-center justify-between px-4 md:px-6 lg:px-8">
+        <a href="#top" className="flex items-center gap-2.5" aria-label={profile.name}>
+          <Monogram className="h-8 w-8" />
+          <span className="font-mono text-xs uppercase tracking-[0.18em] text-foreground">
+            {profile.monogram}
           </span>
         </a>
 
-        <nav
-          className={cn(
-            'fixed inset-0 bg-background/96 backdrop-blur-xl transition-transform duration-300 md:static md:block md:bg-transparent md:backdrop-blur-none',
-            isOpen ? 'translate-x-0' : 'translate-x-full md:translate-x-0'
-          )}
-        >
-          <ul className="flex h-full flex-col items-center justify-center gap-8 md:h-auto md:flex-row md:gap-10">
-            {navItems.map((item) => (
-              <li key={item.href}>
-                <a
-                  href={item.href}
-                  className="relative font-medium text-foreground transition-colors after:absolute after:-bottom-2 after:left-0 after:h-0.5 after:w-0 after:bg-primary after:transition-all hover:text-primary hover:after:w-full"
-                  onClick={() => setIsOpen(false)}
-                >
-                  {item.label}
-                </a>
-              </li>
-            ))}
-          </ul>
+        <nav className="hidden items-center gap-7 md:flex" aria-label="Navegação principal">
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              {item.label}
+            </a>
+          ))}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <ThemeToggle />
-          <button
-            onClick={() => setIsOpen((open) => !open)}
-            className="relative z-50 rounded-lg border border-border bg-card/70 p-2 text-foreground md:hidden"
-            aria-label="Alternar menu"
+          <a
+            href={whatsappLink('Oi Renan! Vi seu portfólio e quero falar sobre um projeto.')}
+            target="_blank"
+            rel="noreferrer noopener"
+            className="hidden rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 md:inline-flex"
           >
-            {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            Falar comigo
+          </a>
+          <button
+            ref={triggerRef}
+            type="button"
+            onClick={() => setMenuOpen((open) => !open)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-md border border-border text-foreground md:hidden"
+            aria-expanded={menuOpen}
+            aria-controls="menu-mobile"
+            aria-label={menuOpen ? 'Fechar menu' : 'Abrir menu'}
+          >
+            {menuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
           </button>
         </div>
       </div>
+
+      {menuOpen && (
+        <div
+          id="menu-mobile"
+          ref={panelRef}
+          className="fixed inset-0 top-16 z-40 flex flex-col gap-1 border-t border-border bg-background px-6 py-8 md:hidden"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Menu"
+        >
+          {navItems.map((item) => (
+            <a
+              key={item.href}
+              href={item.href}
+              onClick={closeMenu}
+              className="border-b border-border py-4 font-display text-2xl font-medium text-foreground"
+            >
+              {item.label}
+            </a>
+          ))}
+          <a
+            href={whatsappLink('Oi Renan! Vi seu portfólio e quero falar sobre um projeto.')}
+            target="_blank"
+            rel="noreferrer noopener"
+            onClick={closeMenu}
+            className="button-primary mt-6"
+          >
+            Falar comigo
+          </a>
+        </div>
+      )}
     </header>
   );
 };

@@ -1,124 +1,83 @@
-import { ArrowRight, Code2, LayoutTemplate, PlugZap, Rocket, Settings2, ShoppingCart, Smartphone } from 'lucide-react';
-import AnimatedSection from './AnimatedSection';
+import React from 'react';
+import { Check, Gamepad2, Layout, Server, Sparkles } from 'lucide-react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { process, services, type Service } from '@/data/services';
+import { whatsappLink } from '@/data/social';
 
-const services = [
-  {
-    title: 'Sites e Landing Pages',
-    description: 'Páginas rápidas, responsivas e otimizadas para conversão.',
-    icon: LayoutTemplate,
-    deliverables: ['Layout estratégico', 'Design responsivo', 'SEO básico']
-  },
-  {
-    title: 'Sistemas Web',
-    description: 'Soluções completas para gerenciar processos e dados.',
-    icon: Code2,
-    deliverables: ['Painel administrativo', 'Regras de negócio', 'Relatórios e métricas']
-  },
-  {
-    title: 'E-commerce',
-    description: 'Lojas online completas com pagamento, estoque e gestão.',
-    icon: ShoppingCart,
-    deliverables: ['Catálogo de produtos', 'Carrinho e checkout', 'Integrações e gestão']
-  },
-  {
-    title: 'Apps e Protótipos',
-    description: 'Protótipos interativos e apps focados em experiência.',
-    icon: Smartphone,
-    deliverables: ['Protótipo navegável', 'UI/UX funcional', 'MVP e validação']
-  },
-  {
-    title: 'APIs e Integrações',
-    description: 'APIs seguras que conectam sistemas, serviços e automações.',
-    icon: PlugZap,
-    deliverables: ['APIs RESTful', 'Webhooks e jobs', 'Documentação e testes']
-  }
-];
+const icons: Record<Service['icon'], React.ComponentType<{ className?: string }>> = {
+  layout: Layout,
+  server: Server,
+  sparkles: Sparkles,
+  gamepad: Gamepad2,
+};
 
-const process = [
-  { title: 'Entender', description: 'Alinho objetivos, público, prazo e funcionalidade.' },
-  { title: 'Construir', description: 'Desenvolvo com código limpo, foco em desempenho e experiência.' },
-  { title: 'Ajustar', description: 'Testamos, validamos e refinamos até o produto fazer sentido.' },
-  { title: 'Publicar', description: 'Coloco no ar com segurança e deixo o caminho pronto para evoluir.' }
-];
-
-const Services = () => {
-  const handleRequestQuote = (service: string) => {
-    const message = encodeURIComponent(`Olá Renan, quero conversar sobre ${service}. Pode me ajudar a entender o melhor caminho?`);
-    window.open(`https://wa.me/5521999880830?text=${message}`, '_blank');
-  };
-
-  return (
-    <section id="services" className="section-container court-lines">
-      <AnimatedSection>
-        <div className="section-kicker">&gt;_ o que eu faço</div>
-        <h2 className="section-title">Serviços</h2>
+const Services = () => (
+  <section id="servicos" className="border-t border-border bg-muted/40">
+    <div className="section-container">
+      <AnimatedSection animation="fade-in-up">
+        <p className="section-kicker">04 — Serviços</p>
+        <h2 className="section-title">Como eu posso ajudar</h2>
         <p className="section-subtitle">
-          Do protótipo ao deploy, eu estruturo, desenvolvo e ajusto produtos digitais.
+          Do protótipo ao deploy. Escolha o que parece com o seu caso e me chame — eu digo na
+          primeira conversa se dá para fazer e como.
         </p>
       </AnimatedSection>
 
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-5">
-        {services.map((service, index) => (
-          <AnimatedSection key={service.title} delay={index * 90}>
-            <article className="brand-panel group flex h-full flex-col overflow-hidden">
-              <div className="flex items-center justify-between bg-accent p-5 text-accent-foreground">
-                <service.icon className="h-9 w-9 text-primary" />
-                <span className="font-mono text-lg text-primary/70">0{index + 1}</span>
-              </div>
-              <div className="flex flex-1 flex-col p-5">
-                <h3 className="mb-3 font-display text-xl font-bold">{service.title}</h3>
-                <p className="mb-5 text-[0.95rem] leading-relaxed text-muted-foreground">{service.description}</p>
-                <p className="mb-3 font-mono text-xs font-bold uppercase text-secondary dark:text-primary">
-                  Entregáveis
+      <AnimatedSection animation="fade-in-up" staggerChildren>
+        <div className="grid gap-5 md:grid-cols-2">
+          {services.map((service) => {
+            const Icon = icons[service.icon];
+            return (
+              <div key={service.title} data-animate-child className="surface flex flex-col p-6">
+                <Icon className="h-5 w-5 text-primary" aria-hidden="true" />
+                <h3 className="mt-4 font-display text-xl font-semibold">{service.title}</h3>
+                <p className="mt-2 text-sm font-medium text-foreground">{service.audience}</p>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+                  {service.problem}
                 </p>
-                <ul className="mb-6 space-y-2">
+
+                <ul className="mt-5 flex-1 space-y-2.5">
                   {service.deliverables.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-[0.92rem] text-muted-foreground">
-                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-primary" />
+                    <li key={item} className="flex gap-2.5 text-sm text-muted-foreground">
+                      <Check className="mt-0.5 h-4 w-4 shrink-0 text-primary" aria-hidden="true" />
                       {item}
                     </li>
                   ))}
                 </ul>
-                <button
-                  onClick={() => handleRequestQuote(service.title)}
-                  className="mt-auto inline-flex items-center justify-between border-t border-border pt-4 text-sm font-semibold text-foreground transition-colors hover:text-primary"
-                >
-                  Conversar sobre isso
-                  <ArrowRight size={17} />
-                </button>
-              </div>
-            </article>
-          </AnimatedSection>
-        ))}
-      </div>
 
-      <AnimatedSection delay={250} animation="fade-in">
-        <div className="deep-panel mt-10 grid gap-8 p-6 md:grid-cols-[240px_1fr] md:p-8">
-          <div>
-            <h3 className="font-display text-3xl font-bold text-primary">Como trabalho</h3>
-            <p className="mt-3 text-sm leading-relaxed text-accent-foreground/80">
-              Processo leve, colaborativo e com entregas reais.
-            </p>
-            <div className="mt-8 rounded-lg border border-primary/20 p-4 font-mono text-sm text-primary">
-              &gt; foco: clareza_
-            </div>
-          </div>
-          <div className="grid gap-5 md:grid-cols-4">
-            {process.map((step, index) => (
-              <div key={step.title} className="relative">
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-primary/15 text-primary">
-                  {index === 0 ? <Settings2 /> : index === 1 ? <Code2 /> : index === 2 ? <Settings2 /> : <Rocket />}
-                </div>
-                <p className="mb-2 font-mono text-sm text-primary">0{index + 1}</p>
-                <h4 className="mb-2 font-display text-xl font-semibold">{step.title}</h4>
-                <p className="text-sm leading-relaxed text-accent-foreground/80">{step.description}</p>
+                <a
+                  href={whatsappLink(`Oi Renan! Quero falar sobre: ${service.title}.`)}
+                  target="_blank"
+                  rel="noreferrer noopener"
+                  className="mt-6 border-t border-border pt-5 text-sm font-medium text-primary transition-opacity hover:opacity-70"
+                >
+                  Conversar sobre isso →
+                </a>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </div>
       </AnimatedSection>
-    </section>
-  );
-};
+
+      <AnimatedSection animation="fade-in-up" className="deep-panel mt-10 p-6 md:p-8">
+        <h3 className="font-display text-xl font-semibold">Como eu trabalho</h3>
+        <p className="mt-2 max-w-xl text-sm text-deep-foreground/70">
+          Processo curto, sem cerimônia, com algo funcionando desde as primeiras semanas.
+        </p>
+        <ol className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+          {process.map((item, index) => (
+            <li key={item.step} className="border-t border-deep-foreground/20 pt-4">
+              <span className="font-mono text-[11px] text-primary-bright">
+                {String(index + 1).padStart(2, '0')}
+              </span>
+              <h4 className="mt-1.5 font-medium">{item.step}</h4>
+              <p className="mt-1 text-sm leading-relaxed text-deep-foreground/70">{item.detail}</p>
+            </li>
+          ))}
+        </ol>
+      </AnimatedSection>
+    </div>
+  </section>
+);
 
 export default Services;

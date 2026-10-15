@@ -1,71 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Sora:wght@500;600;700;800&display=swap');
-@import url('https://rsms.me/inter/inter.css');
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    --background: 177 100% 93%;
-    --foreground: 100 49% 14%;
+    /* Concreto frio #F4F7F6 */
+    --background: 160 16% 96%;
+    /* Grafite #101417 */
+    --foreground: 206 18% 8%;
 
-    --card: 180 60% 98%;
-    --card-foreground: 100 49% 14%;
+    --card: 0 0% 100%;
+    --card-foreground: 206 18% 8%;
 
-    --popover: 180 60% 98%;
-    --popover-foreground: 100 49% 14%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 206 18% 8%;
 
-    --primary: 176 100% 66%;
-    --primary-foreground: 100 49% 14%;
+    /* Ciano urbano #00C2B8, escurecido para contraste AA sobre concreto */
+    --primary: 177 100% 27%;
+    --primary-foreground: 0 0% 100%;
+    /* Ciano puro, para blocos escuros e detalhes */
+    --primary-bright: 177 100% 38%;
 
-    --secondary: 141 34% 51%;
-    --secondary-foreground: 177 100% 93%;
+    /* Coral #FF6B4A */
+    --secondary: 11 100% 65%;
+    --secondary-foreground: 206 18% 8%;
 
-    --muted: 174 50% 88%;
-    --muted-foreground: 104 22% 32%;
+    /* Amarelo quadra #F7C948 */
+    --accent: 44 92% 63%;
+    --accent-foreground: 206 18% 8%;
 
-    --accent: 100 44% 23%;
-    --accent-foreground: 177 100% 93%;
+    --muted: 165 12% 92%;
+    --muted-foreground: 206 10% 38%;
 
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 177 100% 93%;
+    --destructive: 0 72% 45%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 142 28% 72%;
-    --input: 142 28% 72%;
-    --ring: 176 100% 66%;
+    --border: 200 10% 85%;
+    --input: 200 10% 85%;
+    --ring: 177 100% 27%;
 
-    --radius: 0.625rem;
+    --radius: 0.5rem;
+
+    /* Painel grafite, igual nos dois temas */
+    --deep: 206 18% 8%;
+    --deep-foreground: 160 16% 96%;
   }
 
   .dark {
-    --background: 105 50% 10%;
-    --foreground: 177 100% 93%;
+    --background: 206 18% 8%;
+    --foreground: 160 16% 96%;
 
-    --card: 104 42% 15%;
-    --card-foreground: 177 100% 93%;
+    --card: 206 16% 12%;
+    --card-foreground: 160 16% 96%;
 
-    --popover: 104 42% 15%;
-    --popover-foreground: 177 100% 93%;
+    --popover: 206 16% 12%;
+    --popover-foreground: 160 16% 96%;
 
-    --primary: 176 100% 66%;
-    --primary-foreground: 105 50% 10%;
+    --primary: 177 100% 42%;
+    --primary-foreground: 206 18% 8%;
+    --primary-bright: 177 100% 45%;
 
-    --secondary: 141 34% 51%;
-    --secondary-foreground: 177 100% 93%;
+    --secondary: 11 100% 67%;
+    --secondary-foreground: 206 18% 8%;
 
-    --muted: 102 34% 18%;
-    --muted-foreground: 170 42% 82%;
+    --accent: 44 92% 63%;
+    --accent-foreground: 206 18% 8%;
 
-    --accent: 101 44% 20%;
-    --accent-foreground: 177 100% 93%;
+    --muted: 206 14% 16%;
+    --muted-foreground: 200 10% 68%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 177 100% 93%;
+    --destructive: 0 62% 42%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 141 28% 34%;
-    --input: 141 28% 34%;
-    --ring: 176 100% 66%;
+    --border: 206 12% 22%;
+    --input: 206 12% 22%;
+    --ring: 177 100% 42%;
+
+    --deep: 206 16% 12%;
+    --deep-foreground: 160 16% 96%;
   }
 }
 
@@ -80,75 +92,82 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    background:
-      radial-gradient(circle at 12% 8%, hsl(var(--primary) / 0.12), transparent 28rem),
-      radial-gradient(circle at 86% 14%, hsl(var(--secondary) / 0.12), transparent 30rem),
-      hsl(var(--background));
-    font-feature-settings: "ss01", "ss02", "cv01", "cv02";
+    font-feature-settings: 'ss01', 'ss02', 'cv01', 'cv02';
+  }
+
+  /* Âncoras não ficam escondidas sob o header fixo */
+  section[id] {
+    scroll-margin-top: 5.5rem;
   }
 
   ::selection {
-    @apply bg-primary/30;
+    @apply bg-primary/25;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-ring ring-offset-2 ring-offset-background;
   }
 }
 
 @layer components {
   .section-container {
-    @apply container relative px-4 md:px-6 lg:px-8 py-16 md:py-24;
-  }
-
-  .section-title {
-    @apply font-display text-4xl md:text-5xl lg:text-6xl font-extrabold tracking-normal mb-4;
-  }
-
-  .section-subtitle {
-    @apply text-muted-foreground text-base md:text-lg mb-10 max-w-3xl leading-relaxed;
+    @apply container relative px-4 md:px-6 lg:px-8 py-20 md:py-28;
   }
 
   .section-kicker {
-    @apply inline-flex items-center gap-2 font-mono text-xs md:text-sm text-secondary dark:text-primary mb-4;
+    @apply inline-flex items-center gap-2 font-mono text-xs uppercase tracking-[0.18em] text-primary mb-4;
   }
 
-  .brand-panel {
-    @apply rounded-lg border border-border/70 bg-card/90 shadow-sm backdrop-blur-sm;
+  .section-title {
+    @apply font-display text-3xl md:text-4xl lg:text-5xl font-semibold tracking-tight mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-base md:text-lg mb-12 max-w-2xl leading-relaxed;
+  }
+
+  .surface {
+    @apply rounded-lg border border-border bg-card;
   }
 
   .deep-panel {
-    @apply rounded-lg border border-primary/25 bg-accent text-accent-foreground shadow-lg shadow-black/10;
-  }
-
-  .card-hover {
-    @apply transition-transform duration-300 hover:-translate-y-1;
+    background: hsl(var(--deep));
+    color: hsl(var(--deep-foreground));
+    @apply rounded-lg;
   }
 
   .button-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all duration-300 hover:shadow-lg hover:shadow-primary/20 active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/40;
+    @apply inline-flex items-center justify-center gap-2 rounded-md bg-primary px-5 py-3 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 active:scale-[0.99];
   }
 
   .button-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-border bg-card/70 px-6 py-3 text-sm font-semibold text-foreground transition-all duration-300 hover:border-primary hover:text-primary active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-primary/30;
+    @apply inline-flex items-center justify-center gap-2 rounded-md border border-foreground/25 px-5 py-3 text-sm font-medium text-foreground transition-colors hover:border-foreground hover:bg-foreground/5 active:scale-[0.99];
+  }
+
+  .button-ghost {
+    @apply inline-flex items-center gap-2 text-sm font-medium text-primary transition-opacity hover:opacity-70;
+  }
+
+  .tag {
+    @apply inline-flex items-center rounded border border-border bg-muted px-2 py-0.5 font-mono text-[11px] text-muted-foreground;
   }
 
   .gsap-reveal {
-    will-change: opacity, transform, filter;
+    will-change: opacity, transform;
   }
 
+  /* Grade de quadra: linha diagonal + malha fina */
   .court-lines {
     background-image:
-      linear-gradient(135deg, transparent 0 46%, hsl(var(--primary) / 0.16) 46% 46.45%, transparent 46.45% 100%),
-      linear-gradient(90deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px),
-      linear-gradient(0deg, hsl(var(--foreground) / 0.045) 1px, transparent 1px);
-    background-size: 100% 100%, 42px 42px, 42px 42px;
-  }
-
-  .hero-copy-panel {
-    background: hsl(var(--background) / 0.94);
-  }
-
-  @media (min-width: 768px) {
-    .hero-copy-panel {
-      background: transparent;
-    }
+      linear-gradient(
+        135deg,
+        transparent 0 46%,
+        hsl(var(--primary) / 0.14) 46% 46.4%,
+        transparent 46.4% 100%
+      ),
+      linear-gradient(90deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px),
+      linear-gradient(0deg, hsl(var(--foreground) / 0.04) 1px, transparent 1px);
+    background-size: 100% 100%, 44px 44px, 44px 44px;
   }
 }
 

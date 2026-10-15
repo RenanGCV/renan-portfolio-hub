@@ -2,29 +2,26 @@ import { useEffect } from 'react';
 import Header from '@/components/Header';
 import Introduction from '@/components/Introduction';
 import Portfolio from '@/components/Portfolio';
+import Stack from '@/components/Stack';
+import About from '@/components/About';
 import Services from '@/components/Services';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
+import { applyTheme, resolveInitialTheme } from '@/hooks/use-theme';
 
 const Index = () => {
   useEffect(() => {
-    document.title = 'Renan Gonçalves - Desenvolvedor Criativo Full Stack';
-
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.classList.add('dark');
-      localStorage.setItem('theme', 'dark');
-    } else {
-      const theme = localStorage.getItem('theme');
-      document.documentElement.classList.toggle('dark', theme === 'dark');
-    }
+    applyTheme(resolveInitialTheme());
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col overflow-hidden">
+    <div className="flex min-h-screen flex-col">
       <Header />
       <main className="flex-grow">
         <Introduction />
         <Portfolio />
+        <Stack />
+        <About />
         <Services />
         <Contact />
       </main>

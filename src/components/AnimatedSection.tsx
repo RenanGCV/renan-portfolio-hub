@@ -42,6 +42,14 @@ const AnimatedSection: React.FC<AnimatedSectionProps> = ({
       (entries) => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
+            // Com a aba oculta o rAF do GSAP não roda: mostra direto em vez de
+            // deixar o conteúdo preso em autoAlpha 0.
+            if (document.hidden) {
+              gsap.set(section, { autoAlpha: 1, clearProps: 'transform,filter' });
+              observer.unobserve(section);
+              return;
+            }
+
             const target = staggerChildren
               ? Array.from(section.querySelectorAll('[data-animate-child]'))
               : [];

@@ -1,69 +1,42 @@
-# Welcome to your Lovable project
+# Portfólio · Renan Gonçalves
 
-## Project info
+Site pessoal com projetos, stack e serviços. Identidade **Concreto carioca**: concreto frio, grafite, ciano urbano, coral e amarelo quadra, conforme [docs/brand/brand-manual.md](docs/brand/brand-manual.md).
 
-**URL**: https://lovable.dev/projects/43cc7322-e34e-4ed1-aa7d-ca286dbffbce
+## Stack
 
-## How can I edit this code?
+React 18 · TypeScript · Vite · Tailwind CSS · GSAP · React Router
 
-There are several ways of editing your application.
+## Rodar
 
-**Use Lovable**
-
-Simply visit the [Lovable Project](https://lovable.dev/projects/43cc7322-e34e-4ed1-aa7d-ca286dbffbce) and start prompting.
-
-Changes made via Lovable will be committed automatically to this repo.
-
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm install
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+O servidor sobe em http://localhost:8080.
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run build   # build de produção
+npm run lint    # ESLint
+```
 
-**Use GitHub Codespaces**
+## Como editar o conteúdo
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+Todo o texto e os dados ficam em `src/data/` — os componentes só consomem:
 
-## What technologies are used for this project?
+| Arquivo | O que guarda |
+| --- | --- |
+| `profile.ts` | Nome, headline, bio e linha do tempo |
+| `projects.ts` | Projetos, categorias e os números do hero (calculados da lista) |
+| `stack.ts` | Grupos de tecnologias |
+| `services.ts` | Serviços e etapas do processo |
+| `achievements.ts` | Hackathons e conquistas |
+| `social.ts` | WhatsApp, e-mail e redes — fonte única de contato |
 
-This project is built with .
+Para adicionar um projeto, inclua um item em `projects` com `featured: true` para o card grande, ou sem a flag para a grade. Os números do hero se atualizam sozinhos.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Mídia
 
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/43cc7322-e34e-4ed1-aa7d-ca286dbffbce) and click on Share -> Publish.
-
-## I want to use a custom domain - is that possible?
-
-We don't support custom domains (yet). If you want to deploy your project under your own domain then we recommend using Netlify. Visit our docs for more details: [Custom domains](https://docs.lovable.dev/tips-tricks/custom-domain/)
+- Prints dos projetos em `public/projects/`, 1280×720.
+- Foto pessoal: coloque em `public/renan/` e aponte `profile.photo`. Vazio mostra o monograma.
+- `favicon.svg`, `apple-touch-icon.png` e `og-image.png` são a marca R/GCV.

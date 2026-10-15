@@ -1,119 +1,104 @@
-import { ArrowRight, Github, Instagram, Linkedin, Mail, MapPin, MessageSquare } from 'lucide-react';
-import AnimatedSection from './AnimatedSection';
+import React from 'react';
+import { Github, Instagram, Linkedin, Mail, MessageCircle } from 'lucide-react';
+import AnimatedSection from '@/components/AnimatedSection';
+import { contact, mailtoLink, social, whatsappLink } from '@/data/social';
 
-const links = [
-  {
-    label: 'LinkedIn',
-    value: 'Renan Gonçalves',
-    href: 'https://www.linkedin.com/in/renan-teodoro-lopes-gon%C3%A7alves-804014221/',
-    icon: Linkedin
-  },
-  {
-    label: 'GitHub',
-    value: '@RenanGCV',
-    href: 'https://github.com/RenanGCV',
-    icon: Github
-  },
-  {
-    label: 'Instagram',
-    value: '@rena.gcv',
-    href: 'https://www.instagram.com/rena.gcv/',
-    icon: Instagram
-  },
-  {
-    label: 'Email',
-    value: 'Contato profissional',
-    href: 'mailto:renan.dev.br@gmail.com',
-    icon: Mail
-  }
-];
-
-const Contact = () => {
-  const handleWhatsAppClick = () => {
-    window.open('https://wa.me/5521999880830', '_blank');
-  };
-
-  return (
-    <section id="contact" className="section-container overflow-hidden">
-      <div className="absolute left-0 top-24 hidden h-64 w-64 rounded-full border border-primary/25 md:block" />
-      <div className="absolute right-0 top-0 hidden h-full w-[42%] bg-secondary/20 dark:bg-secondary/15 lg:block" />
-
-      <div className="relative grid gap-10 lg:grid-cols-[1fr_0.95fr]">
-        <AnimatedSection staggerChildren>
-          <div data-animate-child className="section-kicker">Contato</div>
-          <h2 data-animate-child className="font-display text-5xl font-extrabold leading-tight md:text-7xl">
-            Vamos tirar
-            <span className="block text-secondary dark:text-primary">sua ideia</span>
-            do papel.
-          </h2>
-          <p data-animate-child className="mt-6 max-w-xl text-lg leading-relaxed text-muted-foreground">
-            Me mande uma mensagem e eu retorno com um caminho claro para o projeto.
-          </p>
-
-          <button data-animate-child onClick={handleWhatsAppClick} className="button-primary mt-8 text-base">
-            <MessageSquare size={20} />
-            Falar no WhatsApp
-            <ArrowRight size={20} />
-          </button>
-
-          <div data-animate-child className="mt-8 grid gap-4 sm:grid-cols-2">
-            {links.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="brand-panel group flex items-center gap-4 p-4 transition-colors hover:border-primary"
-              >
-                <div className="rounded-lg bg-secondary p-3 text-secondary-foreground transition-colors group-hover:bg-primary group-hover:text-primary-foreground">
-                  <link.icon size={22} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="font-semibold">{link.label}</p>
-                  <p className="truncate text-sm text-muted-foreground">{link.value}</p>
-                </div>
-                <ArrowRight className="h-4 w-4 text-muted-foreground transition-transform group-hover:translate-x-1 group-hover:text-primary" />
-              </a>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        <AnimatedSection delay={250} animation="slide-in-right">
-          <div className="deep-panel relative overflow-hidden bg-accent/95 p-6 md:p-8">
-            <div className="brand-panel mb-6 bg-background/5 p-5 text-accent-foreground">
-              <p className="mb-4 font-display text-2xl font-bold text-primary">
-                Aberto a freelance e oportunidades
-              </p>
-              <ul className="space-y-3 text-sm text-accent-foreground/85">
-                <li>✓ Projetos sob medida</li>
-                <li>✓ Comunicação clara</li>
-                <li>✓ Entrega com qualidade</li>
-              </ul>
-            </div>
-
-            <div className="rounded-lg border border-primary/20 bg-black/25 p-5">
-              <p className="mb-4 font-mono text-sm text-primary">renan@dev:~$</p>
-              <pre className="whitespace-pre-wrap font-mono text-sm leading-7 text-primary">
-{`const criar = (ideia) => {
-  planejar();
-  desenvolver();
-  testar();
-  entregar();
+const socialIcons: Record<string, React.ComponentType<{ className?: string }>> = {
+  github: Github,
+  linkedin: Linkedin,
+  instagram: Instagram,
 };
 
-> vamos_construir_juntos();`}
-              </pre>
-            </div>
+const Contact = () => (
+  <section id="contato" className="border-t border-border">
+    <div className="section-container">
+      <div className="grid gap-12 lg:grid-cols-[1.1fr_1fr] lg:gap-16">
+        <AnimatedSection animation="fade-in-up">
+          <p className="section-kicker">05 — Contato</p>
+          <h2 className="section-title">Vamos tirar sua ideia do papel.</h2>
+          <p className="section-subtitle !mb-8">
+            Me conte o que você precisa. Eu respondo com um caminho claro para o projeto — prazo,
+            escopo e o que dá para entregar primeiro.
+          </p>
 
-            <div className="mt-8 flex items-center gap-3 text-sm text-accent-foreground/80">
-              <MapPin className="h-5 w-5 text-primary" />
-              Rio de Janeiro, RJ
-            </div>
+          <div className="flex flex-wrap gap-3">
+            <a
+              href={whatsappLink('Oi Renan! Vi seu portfólio e quero falar sobre um projeto.')}
+              target="_blank"
+              rel="noreferrer noopener"
+              className="button-primary"
+            >
+              <MessageCircle className="h-4 w-4" />
+              WhatsApp {contact.whatsappLabel}
+            </a>
+            <a href={mailtoLink('Projeto')} className="button-secondary">
+              <Mail className="h-4 w-4" />
+              {contact.email}
+            </a>
+          </div>
+
+          <ul className="mt-10 grid gap-3 sm:grid-cols-3">
+            {social.map((item) => {
+              const Icon = socialIcons[item.icon];
+              return (
+                <li key={item.name}>
+                  <a
+                    href={item.url}
+                    target="_blank"
+                    rel="noreferrer noopener"
+                    className="surface flex items-center gap-3 p-4 transition-colors hover:border-foreground/30"
+                  >
+                    {Icon && <Icon className="h-4 w-4 text-primary" aria-hidden="true" />}
+                    <span>
+                      <span className="block text-sm font-medium">{item.name}</span>
+                      <span className="block text-xs text-muted-foreground">{item.handle}</span>
+                    </span>
+                  </a>
+                </li>
+              );
+            })}
+          </ul>
+        </AnimatedSection>
+
+        <AnimatedSection animation="fade-in-up" delay={80}>
+          <div className="deep-panel h-full p-6 md:p-8">
+            <p className="inline-flex items-center gap-2 rounded-full bg-deep-foreground/10 px-3 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-primary-bright">
+              <span
+                className="inline-block h-1.5 w-1.5 rounded-full bg-primary-bright"
+                aria-hidden="true"
+              />
+              {contact.availability}
+            </p>
+
+            <h3 className="mt-6 font-display text-2xl font-semibold">O que esperar de mim</h3>
+            <ul className="mt-6 space-y-5">
+              {[
+                {
+                  title: 'Resposta em até 24h',
+                  detail: 'Dias úteis. Se eu não puder pegar o projeto, eu digo na hora.',
+                },
+                {
+                  title: 'Escopo escrito antes de começar',
+                  detail: 'Você sabe o que vai receber, em quanto tempo e por quanto.',
+                },
+                {
+                  title: 'Entrega em partes',
+                  detail: 'Você acompanha funcionando, não só no fim.',
+                },
+              ].map((item) => (
+                <li key={item.title} className="border-t border-deep-foreground/15 pt-4">
+                  <p className="font-medium">{item.title}</p>
+                  <p className="mt-1 text-sm text-deep-foreground/70">{item.detail}</p>
+                </li>
+              ))}
+            </ul>
+
+            <p className="mt-8 font-mono text-xs text-deep-foreground/50">{contact.location}</p>
           </div>
         </AnimatedSection>
       </div>
-    </section>
-  );
-};
+    </div>
+  </section>
+);
 
 export default Contact;
