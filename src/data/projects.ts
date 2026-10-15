@@ -27,6 +27,22 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    slug: 'finplan',
+    title: 'FinPlan',
+    category: 'Produto',
+    context: 'Projeto próprio · em produção, com usuários reais',
+    problem:
+      'Controle financeiro pessoal costuma morrer na planilha: dá trabalho manter, não mostra o que já está comprometido e some quando você está sem internet.',
+    role:
+      'Construí o produto inteiro: autenticação por celular, dados isolados por conta, visão de saldo disponível e compromissos futuros, e um app instalável que continua funcionando offline.',
+    result: 'No ar e em uso real — não é protótipo nem projeto de estudo.',
+    tech: ['Next.js', 'TypeScript', 'Tailwind CSS', 'PWA', 'Service Worker'],
+    image: '/projects/finplan.png',
+    imageAlt: 'Tela de entrada do FinPlan',
+    links: [{ label: 'Ver demo', url: 'https://fin-plan-app.vercel.app/', kind: 'demo' }],
+    featured: true,
+  },
+  {
     slug: 'conecta-merenda',
     title: 'Conecta Merenda',
     category: 'Produto',
